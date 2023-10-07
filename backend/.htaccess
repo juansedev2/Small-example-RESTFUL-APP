@@ -1,0 +1,11 @@
+RewriteEngine on
+Header set Access-Control-Allow-Origin "*"
+Options -Indexes
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-l
+<FilesMatch "\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+RewriteRule ^(.*)$ Index.php/$1 [L,QSA]
